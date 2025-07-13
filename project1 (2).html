@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Digital</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #ef233c;
+            --gray: #adb5bd;
+            --gray-dark: #495057;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a i {
+            margin-right: 0.3rem;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn i {
+            margin-right: 0.3rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #d90429;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Auth Forms */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px);
+        }
+
+        .auth-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem 0;
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .form-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .search-section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .filter-group {
+            margin-bottom: 0;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .reset-btn {
+            background-color: var(--gray);
+            color: white;
+            margin-top: 1rem;
+        }
+
+        .reset-btn:hover {
+            background-color: var(--gray-dark);
+        }
+
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .book-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-cover {
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-dark);
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-details {
+            padding: 1.5rem;
+        }
+
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .book-author {
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .book-genre {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-description {
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Dashboard */
+        .welcome-message {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-message h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .filters {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                gap: 0;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .auth-card {
+                padding: 1.5rem;
+            }
+            
+            .book-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .book-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <i class="material-icons">menu_book</i>
+                <span>Perpustakaan Digital</span>
+            </a>
+            
+            <button class="hamburger" id="hamburger">
+                <i class="material-icons">menu</i>
+            </button>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#"><i class="material-icons">home</i> Beranda</a>
+                <a href="#books"><i class="material-icons">book</i> Daftar Buku</a>
+                <a href="#search"><i class="material-icons">search</i> Pencarian</a>
+            </div>
+            
+            <div class="user-actions" id="userActions">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>Selamat Datang di Perpustakaan Digital</h1>
+            <p>Temukan ribuan buku dari berbagai genre dan kategori. Baca kapan saja, di mana saja.</p>
+            <a href="#books" class="btn btn-primary">
+                <i class="material-icons">explore</i> Jelajahi Koleksi
+            </a>
+        </section>
+
+        <!-- Login Form (Hidden by default) -->
+        <section class="auth-container" id="loginSection" style="display: none;">
+            <div class="auth-card">
+                <h2><i class="material-icons">login</i> Masuk ke Akun Anda</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Masukkan email Anda" required>
+                        <div class="error-message" id="loginEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Kata Sandi</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Masukkan kata sandi Anda" required>
+                        <div class="error-message" id="loginPasswordError"></div>
+                    </div>
+                    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">Ingat Saya</label>
+                        </div>
+                        <a href="#" id="forgotPassword" style="font-size: 0.875rem;">Lupa Kata Sandi?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="material-icons">login</i> Masuk
+                    </button>
+                    <div class="form-footer">
+                        <p>Belum punya akun? <a href="#" id="showRegister">Daftar sekarang</a></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Register Form (Hidden by default) -->
+        <section class="auth-container" id="registerSection" style="display: none;">
+            <div class="auth-card">
+                <h2><i class="material-icons">person_add</i> Buat Akun Baru</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                        <div class="error-message" id="registerNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="Masukkan email Anda" required>
+                        <div class="error-message" id="registerEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Kata Sandi</label>
+                        <input type="password" id="registerPassword" class="form-control" placeholder="Buat kata sandi (minimal 6 karakter)" required>
+                        <div class="error-message" id="registerPasswordError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Konfirmasi Kata Sandi</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Konfirmasi kata sandi Anda" required>
+                        <div class="error-message" id="registerConfirmPasswordError"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="material-icons">how_to_reg</i> Daftar
+                    </button>
+                    <div class="form-footer">
+                        <p>Sudah punya akun? <a href="#" id="showLogin">Masuk sekarang</a></p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Dashboard (Shown when logged in) -->
+        <section id="dashboardSection" style="display: none;">
+            <div class="welcome-message">
+                <h2>Selamat Datang, <span id="welcomeUserName"></span>!</h2>
+                <p>Mulailah menjelajahi koleksi buku kami atau cari buku favorit Anda.</p>
+                <button id="logoutBtn" class="btn btn-danger">
+                    <i class="material-icons">logout</i> Keluar
+                </button>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section" id="search">
+            <h2><i class="material-icons">search</i> Cari Buku</h2>
+            <form class="search-form" id="searchForm">
+                <input type="text" class="search-input" id="searchInput" placeholder="Cari berdasarkan judul, pengarang, atau genre...">
+                <button type="submit" class="btn btn-primary">
+                    <i class="material-icons">search</i> Cari
+                </button>
+            </form>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="genreFilter"><i class="material-icons">category</i> Genre</label>
+                    <select id="genreFilter" class="filter-select">
+                        <option value="">Semua Genre</option>
+                        <option value="Fiksi">Fiksi</option>
+                        <option value="Non-Fiksi">Non-Fiksi</option>
+                        <option value="Teknologi">Teknologi</option>
+                        <option value="Sains">Sains</option>
+                        <option value="Sejarah">Sejarah</option>
+                        <option value="Anak-anak">Anak-anak</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="typeFilter"><i class="material-icons">bookmark</i> Jenis</label>
+                    <select id="typeFilter" class="filter-select">
+                        <option value="">Semua Jenis</option>
+                        <option value="Buku">Buku</option>
+                        <option value="Majalah">Majalah</option>
+                        <option value="Jurnal">Jurnal</option>
+                        <option value="E-book">E-book</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortFilter"><i class="material-icons">sort</i> Urutkan</label>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="title-asc">Judul (A-Z)</option>
+                        <option value="title-desc">Judul (Z-A)</option>
+                        <option value="author-asc">Pengarang (A-Z)</option>
+                        <option value="author-desc">Pengarang (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+            <button id="resetFilters" class="btn reset-btn">
+                <i class="material-icons">clear</i> Reset Filter
+            </button>
+        </section>
+
+        <!-- Books Section -->
+        <section id="books">
+            <h2 style="margin-bottom: 1.5rem;"><i class="material-icons">library_books</i> Daftar Buku</h2>
+            <div class="books-grid" id="booksGrid">
+                <!-- Books will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Sample Book Data
+        const books = [
+            {
+                id: 1,
+                title: "Laskar Pelangi",
+                author: "Andrea Hirata",
+                genre: "Fiksi",
+                type: "Buku",
+                description: "Novel Indonesia yang menceritakan kehidupan 10 anak dari keluarga miskin yang bersekolah di SD Muhammadiyah di Belitung.",
+                cover: "https://upload.wikimedia.org/wikipedia/id/8/8e/Laskar_pelangi_sampul.jpg"
+            },
+            {
+                id: 2,
+                title: "Bumi Manusia",
+                author: "Pramoedya Ananta Toer",
+                genre: "Fiksi",
+                type: "Buku",
+                description: "Novel pertama dari Tetralogi Buru yang menceritakan tentang perjuangan seorang pribumi di masa kolonial Belanda.",
+                cover: "https://upload.wikimedia.org/wikipedia/id/4/4a/Bumi_Manusia_Cover.jpg"
+            },
+            {
+                id: 3,
+                title: "Atomic Habits",
+                author: "James Clear",
+                genre: "Non-Fiksi",
+                type: "Buku",
+                description: "Buku tentang membangun kebiasaan baik dan menghilangkan kebiasaan buruk dengan pendekatan ilmiah.",
+                cover: "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
+            },
+            {
+                id: 4,
+                title: "Clean Code",
+                author: "Robert C. Martin",
+                genre: "Teknologi",
+                type: "Buku",
+                description: "Panduan untuk menulis kode yang bersih, mudah dibaca, dan mudah dipelihara dalam pengembangan perangkat lunak.",
+                cover: "https://images-na.ssl-images-amazon.com/images/I/41xShlnTZTL._SX376_BO1,204,203,200_.jpg"
+            },
+            {
+                id: 5,
+                title: "Sapiens",
+                author: "Yuval Noah Harari",
+                genre: "Sejarah",
+                type: "Buku",
+                description: "Sejarah singkat umat manusia dari zaman batu hingga revolusi teknologi abad ke-21.",
+                cover: "https://images-na.ssl-images-amazon.com/images/I/713jIoMO3UL.jpg"
+            },
+            {
+                id: 6,
+                title: "Dunia Sophie",
+                author: "Jostein Gaarder",
+                genre: "Fiksi",
+                type: "Buku",
+                description: "Novel tentang sejarah filsafat yang dituturkan melalui kisah seorang gadis bernama Sophie.",
+                cover: "https://upload.wikimedia.org/wikipedia/id/4/4b/Dunia_Sophie.jpg"
+            },
+            {
+                id: 7,
+                title: "National Geographic",
+                author: "Various",
+                genre: "Non-Fiksi",
+                type: "Majalah",
+                description: "Majalah bulanan yang membahas geografi, ilmu pengetahuan, sejarah, budaya, dan fotografi.",
+                cover: "https://www.nationalgeographic.com/content/dam/magazine/rights-exempt/2021/09/issue-cover/2021-09-ngm-cover.ngsversion.1630433712209.adapt.1900.1.jpg"
+            },
+            {
+                id: 8,
+                title: "Harry Potter dan Batu Bertuah",
+                author: "J.K. Rowling",
+                genre: "Fiksi",
+                type: "Buku",
+                description: "Buku pertama dalam seri Harry Potter tentang seorang anak laki-laki yang menemukan bahwa ia adalah seorang penyihir.",
+                cover: "https://upload.wikimedia.org/wikipedia/id/b/b2/Harry_Potter_and_the_Philosopher%27s_Stone_cover.jpg"
+            }
+        ];
+
+        // DOM Elements
+        const navLinks = document.getElementById('navLinks');
+        const hamburger = document.getElementById('hamburger');
+        const userActions = document.getElementById('userActions');
+        const loginSection = document.getElementById('loginSection');
+        const registerSection = document.getElementById('registerSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const welcomeUserName = document.getElementById('welcomeUserName');
+        const showLogin = document.getElementById('showLogin');
+        const showRegister = document.getElementById('showRegister');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const booksGrid = document.getElementById('booksGrid');
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const genreFilter = document.getElementById('genreFilter');
+        const typeFilter = document.getElementById('typeFilter');
+        const sortFilter = document.getElementById('sortFilter');
+        const resetFilters = document.getElementById('resetFilters');
+
+        // Current User
+        let currentUser = null;
+
+        // Initialize App
+        function initApp() {
+            // Check if user is logged in
+            const storedUser = localStorage.getItem('currentUser');
+            if (storedUser) {
+                currentUser = JSON.parse(storedUser);
+                showDashboard();
+            } else {
+                showAuthButtons();
+            }
+
+            // Load books
+            renderBooks(books);
+
+            // Setup event listeners
+            setupEventListeners();
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Hamburger menu
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+
+            // Show login form
+            showLogin?.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerSection.style.display = 'none';
+                loginSection.style.display = 'flex';
+                window.scrollTo(0, 0);
+            });
+
+            // Show register form
+            showRegister?.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginSection.style.display = 'none';
+                registerSection.style.display = 'flex';
+                window.scrollTo(0, 0);
+            });
+
+            // Login form submission
+            loginForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleLogin();
+            });
+
+            // Register form submission
+            registerForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleRegister();
+            });
+
+            // Logout button
+            logoutBtn?.addEventListener('click', handleLogout);
+
+            // Search form submission
+            searchForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                filterBooks();
+            });
+
+            // Filter changes
+            genreFilter?.addEventListener('change', filterBooks);
+            typeFilter?.addEventListener('change', filterBooks);
+            sortFilter?.addEventListener('change', filterBooks);
+
+            // Reset filters
+            resetFilters?.addEventListener('click', (e) => {
+                e.preventDefault();
+                searchInput.value = '';
+                genreFilter.value = '';
+                typeFilter.value = '';
+                sortFilter.value = 'title-asc';
+                renderBooks(books);
+            });
+        }
+
+        // Show Authentication Buttons
+        function showAuthButtons() {
+            userActions.innerHTML = `
+                <button class="btn btn-outline" id="showLoginBtn">
+                    <i class="material-icons">login</i> Masuk
+                </button>
+                <button class="btn btn-primary" id="showRegisterBtn">
+                    <i class="material-icons">person_add</i> Daftar
+                </button>
+            `;
+
+            document.getElementById('showLoginBtn').addEventListener('click', () => {
+                loginSection.style.display = 'flex';
+                window.scrollTo(0, 0);
+            });
+
+            document.getElementById('showRegisterBtn').addEventListener('click', () => {
+                registerSection.style.display = 'flex';
+                window.scrollTo(0, 0);
+            });
+        }
+
+        // Show Dashboard
+        function showDashboard() {
+            loginSection.style.display = 'none';
+            registerSection.style.display = 'none';
+            dashboardSection.style.display = 'block';
+            welcomeUserName.textContent = currentUser.name;
+
+            userActions.innerHTML = `
+                <span style="margin-right: 1rem; font-weight: 500;">
+                    <i class="material-icons">account_circle</i> ${currentUser.name}
+                </span>
+                <button class="btn btn-danger" id="logoutBtn">
+                    <i class="material-icons">logout</i> Keluar
+                </button>
+            `;
+
+            document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+        }
+
+        // Handle Login
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Reset error messages
+            document.getElementById('loginEmailError').style.display = 'none';
+            document.getElementById('loginPasswordError').style.display = 'none';
+
+            // Simple validation
+            if (!email) {
+                document.getElementById('loginEmailError').textContent = 'Email harus diisi';
+                document.getElementById('loginEmailError').style.display = 'block';
+                return;
+            }
+
+            if (!password) {
+                document.getElementById('loginPasswordError').textContent = 'Kata sandi harus diisi';
+                document.getElementById('loginPasswordError').style.display = 'block';
+                return;
+            }
+
+            // Check user in localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                if (rememberMe) {
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+                showDashboard();
+            } else {
+                document.getElementById('loginPasswordError').textContent = 'Email atau kata sandi salah';
+                document.getElementById('loginPasswordError').style.display = 'block';
+            }
+        }
+
+        // Handle Register
+        function handleRegister() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            // Reset error messages
+            document.getElementById('registerNameError').style.display = 'none';
+            document.getElementById('registerEmailError').style.display = 'none';
+            document.getElementById('registerPasswordError').style.display = 'none';
+            document.getElementById('registerConfirmPasswordError').style.display = 'none';
+
+            // Validation
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('registerNameError').textContent = 'Nama harus diisi';
+                document.getElementById('registerNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!email) {
+                document.getElementById('registerEmailError').textContent = 'Email harus diisi';
+                document.getElementById('registerEmailError').style.display = 'block';
+                isValid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                document.getElementById('registerEmailError').textContent = 'Email tidak valid';
+                document.getElementById('registerEmailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!password) {
+                document.getElementById('registerPasswordError').textContent = 'Kata sandi harus diisi';
+                document.getElementById('registerPasswordError').style.display = 'block';
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById('registerPasswordError').textContent = 'Kata sandi minimal 6 karakter';
+                document.getElementById('registerPasswordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('registerConfirmPasswordError').textContent = 'Kata sandi tidak cocok';
+                document.getElementById('registerConfirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Check if email already exists
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const emailExists = users.some(u => u.email === email);
+
+            if (emailExists) {
+                document.getElementById('registerEmailError').textContent = 'Email sudah terdaftar';
+                document.getElementById('registerEmailError').style.display = 'block';
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Auto login
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            showDashboard();
+        }
+
+        // Handle Logout
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            showAuthButtons();
+            dashboardSection.style.display = 'none';
+            loginSection.style.display = 'none';
+            registerSection.style.display = 'none';
+        }
+
+        // Render Books
+        function renderBooks(booksToRender) {
+            booksGrid.innerHTML = '';
+
+            if (booksToRender.length === 0) {
+                booksGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Tidak ada buku yang ditemukan</p>';
+                return;
+            }
+
+            booksToRender.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                bookCard.innerHTML = `
+                    <div class="book-cover">
+                        <img src="${book.cover}" alt="${book.title}">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">Oleh: ${book.author}</p>
+                        <span class="book-genre">${book.genre}</span>
+                        <p class="book-description">${book.description}</p>
+                        <div class="book-actions">
+                            <button class="btn btn-outline" style="flex: 1;">
+                                <i class="material-icons">info</i> Detail
+                            </button>
+                        </div>
+                    </div>
+                `;
+                booksGrid.appendChild(bookCard);
+            });
+        }
+
+        // Filter Books
+        function filterBooks() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedGenre = genreFilter.value;
+            const selectedType = typeFilter.value;
+            const sortOption = sortFilter.value;
+
+            let filteredBooks = books.filter(book => {
+                const matchesSearch = 
+                    book.title.toLowerCase().includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm) ||
+                    book.genre.toLowerCase().includes(searchTerm);
+                
+                const matchesGenre = selectedGenre ? book.genre === selectedGenre : true;
+                const matchesType = selectedType ? book.type === selectedType : true;
+
+                return matchesSearch && matchesGenre && matchesType;
+            });
+
+            // Sort books
+            filteredBooks.sort((a, b) => {
+                const [sortBy, order] = sortOption.split('-');
+                
+                let comparison = 0;
+                if (sortBy === 'title') {
+                    comparison = a.title.localeCompare(b.title);
+                } else if (sortBy === 'author') {
+                    comparison = a.author.localeCompare(b.author);
+                }
+                
+                return order === 'desc' ? -comparison : comparison;
+            });
+
+            renderBooks(filteredBooks);
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
